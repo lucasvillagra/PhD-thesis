@@ -1,0 +1,425 @@
+==============================================================================================================================================================
+d=5:
+
+
+Chi:= function(p)
+Eps1:=Generators(DirichletGroup(15,CyclotomicField(4)));
+Eps1:=Eps1[1]*Eps1[2];
+Eps2:=Generators(DirichletGroup(20,CyclotomicField(4)));
+Eps2:=Eps2[1]*Eps2[2];
+if KroneckerSymbol(-5,p) eq -1 then
+   f:=order(Eps1(p));
+else
+	f:=order(Eps2(p))*2;
+end if;
+return f;
+end function;
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+G:=DirichletGroup(2^4*3^2*5^2,CyclotomicField(4));                           
+eps:=(Elements(G)[50]);
+M:=ModularSymbols(eps,2,1);
+S:=NewSubspace(CuspidalSubspace(M));
+new:=NewformDecomposition(S);
+CM:=FormsWithCM(new);
+
+[ 1, 2, 3, 4, 7, 9, 10 ]
+
+
+for i in [1..#new] do         
+if i notin CM then
+print(DiscardPlace(5,eps,Chi,new,i,13,50));
+end if;
+end for;      
+
+{@ 2, 5 @}
+{@ 2, 5 @}
+Cannot discard the form with parameter:  8
+[]
+Cannot discard the form with parameter:  11
+[]
+Cannot discard the form with parameter:  12
+[]
+Cannot discard the form with parameter:  13
+[]
+{@ 2, 5 @}
+{@ 2, 5 @}
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+eps:=Extend(eps,2^4*3^3*5^2);
+M:=ModularSymbols(eps,2,1);
+S:=NewSubspace(CuspidalSubspace(M));
+new:=NewformDecomposition(S);
+CM:=FormsWithCM(new);
+
+[ 1, 2, 3, 4, 5, 6 ]
+
+for i in [1..#new] do         
+if i notin CM then
+print(DiscardPlace(5,eps,Chi,new,i,13,50));
+end if;
+end for;      
+
+Cannot discard the form with parameter:  7
+[]
+Cannot discard the form with parameter:  8
+[]
+Cannot discard the form with parameter:  9
+[]
+Cannot discard the form with parameter:  10
+[]
+{@ 2, 5 @}
+{@ 2, 5 @}
+{@ 2, 5 @}
+{@ 2, 3, 5 @}
+{@ 2, 5 @}
+{@ 2, 3, 5 @}
+{@ 2, 3, 5 @}
+{@ 2, 3, 5 @}
+{@ 2, 3, 7 @}
+{@ 2, 5 @}
+{@ 2, 5 @}
+{@ 2, 3 @}
+{@ 2, 3 @}
+{@ 2, 5 @}
+
+
+==============================================================================================================================================================
+d=6:
+
+
+Chi:= function(p)
+if KroneckerSymbol(-6,p) eq -1 then
+	f:=order(KroneckerSymbol(-1,p)*KroneckerSymbol(p,2)*KroneckerSymbol(p,3));
+else
+   f:=2*order(KroneckerSymbol(-1,p)*KroneckerSymbol(p,3));
+end if;
+return f;
+end function;
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+G:=DirichletGroup(2^8*3^5);
+eps:=Generators(G)[1]*Generators(G)[3];
+M:=ModularSymbols(eps,2,1);
+S:=NewSubspace(CuspidalSubspace(M));
+new:=NewformDecomposition(S);
+CM:=FormsWithCM(new);
+
+
+> #new;
+58
+> #CM;
+8
+
+> CM;
+[ 1, 2, 3, 4, 5, 6, 41, 42 ]
+
+
+> for i in [1..51] do
+for> if i notin CM then
+for|if> print(DiscardPlace(6,eps,Chi,new,i,1,13));
+for|if> end if;
+for> end for;
+{@ 2, 3 @}
+{@ 2, 3 @}
+{@ 11, 2, 3 @}
+{@ 11, 2, 3 @}
+{@ 2 @}
+{@ 2 @}
+{@ 2, 3, 5 @}
+{@ 2, 7 @}
+{@ 2, 3 @}
+{@ 2, 3 @}
+{@ 2, 5 @}
+{@ 2, 5 @}
+{@ 11, 2, 3 @}
+{@ 2, 3 @}
+{@ 11, 2, 3 @}
+{@ 2, 3 @}
+{@ 11, 2, 5 @}
+{@ 11, 2, 5 @}
+{@ 11, 2, 5 @}
+{@ 11, 2, 5 @}
+{@ 3 @}
+{@ 3 @}
+{@ 2 @}
+{@ 2 @}
+{@ 2, 13 @}
+{@ 2, 13 @}
+{@ 2 @}
+{@ 2 @}
+{@ 2, 13 @}
+{@ 2, 13 @}
+{@ 2, 3 @}
+{@ 2 @}
+{@ 2, 3, 5 @}
+{@ 2, 3, 5 @}
+{@ 2 @}
+{@ 2, 5 @}
+{@ 2 @}
+{@ 2, 7 @}
+{@ 37 @}
+{@ 37 @}
+{@ 37 @}
+{@ 37 @}
+{@ @} 
+
+/* Discarding new[i] for i=52,...,58. */
+
+/* Magma */
+
+> ApCand(6,5);
+{ -3, 0, 3 }
+
+> ApCand(6,11);
+{ -6, -3, 0, 3, 6 }
+
+/* new[52] */
+
+f:=PowerSeries(new[52],12);
+Write("Form52Coef5.txt",Coefficient(f,5));
+Write("Form52Coef11.txt",Coefficient(f,11));
+Write("Form52Pol.txt",Parent(Coefficient(f,5)));
+
+/* new[53] */
+
+f:=PowerSeries(new[53],12);
+Write("Form53Coef5.txt",Coefficient(f,5));
+Write("Form53Coef11.txt",Coefficient(f,11));
+Write("Form53Pol.txt",Parent(Coefficient(f,5)));
+
+/* new[54] */
+
+f:=PowerSeries(new[54],12);
+Write("Form54Coef5.txt",Coefficient(f,5));
+Write("Form54Coef11.txt",Coefficient(f,11));
+Write("Form54Pol.txt",Parent(Coefficient(f,5)));
+
+/* new[55] */
+
+f:=PowerSeries(new[55],12);
+Write("Form55Coef5.txt",Coefficient(f,5));
+Write("Form55Coef11.txt",Coefficient(f,11));
+Write("Form55Pol.txt",Parent(Coefficient(f,5)));
+
+/* new[56] */
+
+f:=PowerSeries(new[56],12);
+Write("Form56Coef5.txt",Coefficient(f,5));
+Write("Form56Coef11.txt",Coefficient(f,11));
+Write("Form56Pol.txt",Parent(Coefficient(f,5)));
+
+/* new[57] */
+
+f:=PowerSeries(new[57],12);
+Write("Form57Coef5.txt",Coefficient(f,5));
+Write("Form57Coef11.txt",Coefficient(f,11));
+Write("Form57Pol.txt",Parent(Coefficient(f,5)));
+
+/* new[58] */
+
+f:=PowerSeries(new[58],12);
+Write("Form58Coef5.txt",Coefficient(f,5));
+Write("Form58Coef11.txt",Coefficient(f,11));
+Write("Form58Pol.txt",Parent(Coefficient(f,5)));
+
+/* PARI/GP */
+
+/* new[52] */
+
+P=read("Form52Pol.txt");
+coef5=read("Form52Coef5.txt");
+coef11=read("Form52Coef11.txt");
+P=subst(P,x,a);
+
+n5=norm(coef5*Mod(1,P))*norm(coef5^2*Mod(1,P)+9)*norm(coef5^2*Mod(1,P)+36);
+n11=norm(coef11*Mod(1,P))*norm(coef11^2*Mod(1,P)-9)*norm(coef11^2*Mod(1,P)-36)*norm(144-coef11^2*Mod(1,P));
+
+factor(gcd(n5,n11))
+
+%11 = 
+[ 2 84]
+
+[13  8]
+
+
+/* new[53] */
+
+P=read("Form53Pol.txt");
+coef5=read("Form53Coef5.txt");
+coef11=read("Form53Coef11.txt");
+P=subst(P,x,a);
+
+n5=norm(coef5*Mod(1,P))*norm(coef5^2*Mod(1,P)+9)*norm(coef5^2*Mod(1,P)+36);
+n11=norm(coef11*Mod(1,P))*norm(coef11^2*Mod(1,P)-9)*norm(coef11^2*Mod(1,P)-36)*norm(144-coef11^2*Mod(1,P));
+
+factor(gcd(n5,n11))
+
+%18 = 
+[ 2 36]
+
+[11  4]
+
+[13  8]
+
+
+/* new[54] */
+
+P=read("Form54Pol.txt");
+coef5=read("Form54Coef5.txt");
+coef11=read("Form54Coef11.txt");
+P=subst(P,x,a);
+
+n5=norm(coef5*Mod(1,P))*norm(coef5^2*Mod(1,P)+9)*norm(coef5^2*Mod(1,P)+36);
+n11=norm(coef11*Mod(1,P))*norm(coef11^2*Mod(1,P)-9)*norm(coef11^2*Mod(1,P)-36)*norm(144-coef11^2*Mod(1,P));
+
+factor(gcd(n5,n11))
+
+%25 = 
+[2 132]
+
+
+/* new[55] */
+
+P=read("Form55Pol.txt");
+coef5=read("Form55Coef5.txt");
+coef11=read("Form55Coef11.txt");
+P=subst(P,x,a);
+
+n5=norm(coef5*Mod(1,P))*norm(coef5^2*Mod(1,P)+9)*norm(coef5^2*Mod(1,P)+36);
+n11=norm(coef11*Mod(1,P))*norm(coef11^2*Mod(1,P)-9)*norm(coef11^2*Mod(1,P)-36)*norm(144-coef11^2*Mod(1,P));
+
+factor(gcd(n5,n11))
+
+%32 = 
+[3 40]
+
+
+/* new[56] */
+
+P=read("Form56Pol.txt");
+coef5=read("Form56Coef5.txt");
+coef11=read("Form56Coef11.txt");
+P=subst(P,x,a);
+
+n5=norm(coef5*Mod(1,P))*norm(coef5^2*Mod(1,P)+9)*norm(coef5^2*Mod(1,P)+36);
+n11=norm(coef11*Mod(1,P))*norm(coef11^2*Mod(1,P)-9)*norm(coef11^2*Mod(1,P)-36)*norm(144-coef11^2*Mod(1,P));
+
+factor(gcd(n5,n11))
+
+%47 = 
+[3 40]
+
+/* new[57] */
+
+P=read("Form57Pol.txt");
+coef5=read("Form57Coef5.txt");
+coef11=read("Form57Coef11.txt");
+P=subst(P,x,a);
+
+n5=norm(coef5*Mod(1,P))*norm(coef5^2*Mod(1,P)+9)*norm(coef5^2*Mod(1,P)+36);
+n11=norm(coef11*Mod(1,P))*norm(coef11^2*Mod(1,P)-9)*norm(coef11^2*Mod(1,P)-36)*norm(144-coef11^2*Mod(1,P));
+
+factor(gcd(n5,n11))
+
+%65 = 
+[ 3 60]
+
+[37  8]
+
+
+/* new[58] */
+
+P=read("Form58Pol.txt");
+coef5=read("Form58Coef5.txt");
+coef11=read("Form58Coef11.txt");
+P=subst(P,x,a);
+
+n5=norm(coef5*Mod(1,P))*norm(coef5^2*Mod(1,P)+9)*norm(coef5^2*Mod(1,P)+36);
+n11=norm(coef11*Mod(1,P))*norm(coef11^2*Mod(1,P)-9)*norm(coef11^2*Mod(1,P)-36)*norm(144-coef11^2*Mod(1,P));
+
+gcd(n5,n11)
+%10 = 1
+
+==============================================================================================================================================================
+d=7:
+
+Chi:= function(p)
+if KroneckerSymbol(-7,p) eq -1 then
+   f:=1;
+else
+	f:=2*order(KroneckerSymbol(p,3)*KroneckerSymbol(p,7));
+end if;
+return f;
+end function;
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+G:=DirichletGroup(2*3*7^2);
+eps:=Generators(G)[1]*Generators(G)[2];
+M:=ModularSymbols(eps,2,1);
+S:=NewSubspace(CuspidalSubspace(M));
+new:=NewformDecomposition(S);
+
+for i in [1..#new] do         
+print(DiscardPlace(7,eps,Chi,new,i,13,23));
+end for;      
+
+Cannot discard the form with parameter:  1
+[]
+{@ 2, 7 @}
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+G:=DirichletGroup(2^2*3*7^2);
+eps:=Generators(G)[2]*Generators(G)[3];
+M:=ModularSymbols(eps,2,1);
+S:=NewSubspace(CuspidalSubspace(M));
+new:=NewformDecomposition(S);
+
+
+CM:=FormsWithCM(new);
+> [1]
+
+for i in [2..#new] do
+for> print(DiscardPlace(7,eps,Chi,new,i,2,20));
+for> end for;
+{@ 2, 3 @}
+{@ 2, 3 @}
+{@ 2, 7 @}
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+G:=DirichletGroup(2^2*3^3*7^2);
+eps:=Generators(G)[2]*Generators(G)[3];
+M:=ModularSymbols(eps,2,1);
+S:=NewSubspace(CuspidalSubspace(M));
+new:=NewformDecomposition(S);
+
+FormsWithCM(new);
+[ 1, 2, 3 ]
+
+for i in [4..#new] do
+for> DiscardPlace(7,eps,Chi,new,i,2,20);             
+for> end for;
+{@ 5, 2, 3 @}
+{@ 3, 7 @}
+{@ 2, 7 @}
+{@ 2, 7 @}
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+G:=DirichletGroup(2*3^3*7^2);
+eps:=Generators(G)[1]*Generators(G)[2];
+M:=ModularSymbols(eps,2,1);
+S:=NewSubspace(CuspidalSubspace(M));
+new:=NewformDecomposition(S);
+
+for i in [1..#new] do
+for> DiscardPlace(7,eps,Chi,new,i,2,13);
+for> end for;
+Cannot discard the form with parameter:  1
+[]
+Cannot discard the form with parameter:  2
+[]
+Cannot discard the form with parameter:  3
+[]
+{@ 2, 3 @}
+{@ 2, 7 @}
+{@ 2, 7 @}

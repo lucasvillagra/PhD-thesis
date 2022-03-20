@@ -1,0 +1,324 @@
+==============================================================================================================================================================
+d=5:
+
+
+Chi:= function(p)
+
+G:=DirichletGroup(2^7*5^2,CyclotomicField(4));                       
+eps:=(Elements(G)[26]); 
+
+f:=order(eps(p)*KroneckerSymbol(p,5)*KroneckerSymbol(p,2));
+
+if KroneckerSymbol(-5,p) eq 1 then
+   f:=2*order(eps(p));
+end if;
+return f;
+end function;
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+G:=DirichletGroup(2^7*5^2,CyclotomicField(4));                       
+eps:=(Elements(G)[26]); 
+M:=ModularSymbols(eps,2,1);
+S:=NewSubspace(CuspidalSubspace(M));
+new:=NewformDecomposition(S);
+CM:=FormsWithCM(new);
+
+
+> #new;
+12
+> #CM;
+0
+
+> for i in [1..#new] do
+for> if i notin CM then
+for|if> print(DiscardPlace(5,eps,Chi,new,i,1,30));
+for|if> end if;
+for> end for;
+{@ 2 @}
+{@ 2 @}
+{@ 2 @}
+{@ 2 @}
+{@ 2, 7 @}
+{@ 2, 7 @}
+{@ 2, 7 @}
+{@ 2, 7 @}
+{@ 13 @}
+{@ 13 @}
+{@ 13 @}
+{@ 13 @}
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+G:=DirichletGroup(2^8*5^2,CyclotomicField(4));                       
+eps:=(Elements(G)[26]);   
+M:=ModularSymbols(eps,2,1);
+S:=NewSubspace(CuspidalSubspace(M));
+new:=NewformDecomposition(S);
+CM:=FormsWithCM(new);
+
+> #new;
+55
+
+> #CM;
+24
+
+
+> for i in [1..#new] do
+for> if i notin CM then
+for|if> print(DiscardPlace(5,eps,Chi,new,i,1,20));
+for|if> end if;
+for> end for;
+{@ 11, 2, 7 @}
+{@ 11, 2, 7 @}
+{@ 11, 2, 7 @}
+{@ 11, 2, 7 @}
+{@ 2, 7 @}
+{@ 2, 7 @}
+{@ 2, 7 @}
+{@ 2, 7 @}
+{@ 7 @}
+{@ 7 @}
+{@ 7 @}
+{@ 7 @}
+{@ 3 @}
+{@ 3 @}
+{@ 2, 3 @}
+{@ 2, 3 @}
+{@ 3, 7 @}
+{@ 3, 7 @}
+{@ @}
+{@ @}
+{@ 2, 3, 5, 7 @}
+{@ 2 @}
+{@ 2 @}
+{@ 2 @}
+{@ 2 @}
+{@ 3 @}
+{@ 3 @}
+{@ 3 @}
+{@ 3 @}
+{@ 2, 5 @}
+{@ 2, 5 @}
+
+
+> for i in CM do                                 
+for> print(MazurTrickMultiplicative(new,3,eps,[i]));
+for> end for;
+{@ 2 @}
+{@ 2 @}
+{@ 2 @}
+{@ 2 @}
+{@ 2 @}
+{@ 2 @}
+{@ 2 @}
+{@ 2 @}
+{@ 2, 3 @}
+{@ 2, 3 @}
+{@ 2, 3 @}
+{@ 2, 3 @}
+{@ 2, 5 @}
+{@ 2, 5 @}
+{@ 2 @}
+{@ 2 @}
+{@ 3, 139 @}
+{@ 3, 139 @}
+{@ 3, 139 @}
+{@ 3, 139 @}
+{@ 2, 29 @}
+{@ 2, 29 @}
+{@ 5, 101 @}
+{@ 5, 101 @}
+
+==============================================================================================================================================================
+d=6:
+
+
+Chi:= function(p)
+
+f:=1;
+
+if KroneckerSymbol(-6,p) eq 1 then
+   f:=2*order(KroneckerSymbol(-1,p)*KroneckerSymbol(p,3));
+end if;
+return f;
+end function;
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+G:=DirichletGroup(2^8*3);
+eps:=Elements(G)[6];
+M:=ModularSymbols(eps,2,1);
+S:=NewSubspace(CuspidalSubspace(M));
+new:=NewformDecomposition(S);
+CM:=FormsWithCM(new);
+
+
+> #new;
+10
+> #CM;
+6
+
+> for i in [1..#new] do
+for> if i notin CM then
+for|if> print(DiscardPlace(6,eps,Chi,new,i,1,10));
+for|if> end if;
+for> end for;
+{@ 2, 7 @}
+{@ 2, 7 @}
+{@ 2, 7 @}
+{@ 2, 7 @}
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+G:=DirichletGroup(2^9*3);
+eps:=Elements(G)[6];
+M:=ModularSymbols(eps,2,1);
+S:=NewSubspace(CuspidalSubspace(M));
+new:=NewformDecomposition(S);
+CM:=FormsWithCM(new);
+
+> #new;
+13
+> #CM;
+3
+
+> for i in [1..#new] do
+for> if i notin CM then
+for|if> print(DiscardPlace(6,eps,Chi,new,i,1,20));
+for|if> end if; 
+for> end for;
+{@ 2, 7 @}
+{@ 2, 7 @}
+{@ 2, 7 @}
+{@ 2, 7 @}
+{@ 2, 5 @}
+{@ 2, 5 @}
+{@ 2, 5, 7 @}
+{@ 2, 5, 7 @}
+{@ 2 @}
+
+==============================================================================================================================================================
+d=7:
+
+
+Chi:= function(p)
+f:=order(KroneckerSymbol(-1,p)*KroneckerSymbol(p,2)*KroneckerSymbol(p,7));
+if KroneckerSymbol(-5,p) eq 1 then
+   f:=2;
+end if;
+return f;
+end function;
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+G:=DirichletGroup(2*7^2);
+eps:=Elements(G)[1];
+M:=ModularSymbols(eps,2,1);
+S:=NewSubspace(CuspidalSubspace(M));
+new:=NewformDecomposition(S);
+CM:=FormsWithCM(new);
+
+> #new;
+2
+> #CM;
+0
+
+
+> for i in [1..#new] do
+for> if i notin CM then
+for|if> print(DiscardPlace(7,eps,Chi,new,i,1,50));
+for|if> end if;
+for> end for;
+{@ 2, 17, 7 @}
+Cannot discard the form with parameter:  2
+[]
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+G:=DirichletGroup(2^8*7^2);
+eps:=Elements(G)[1];
+M:=ModularSymbols(eps,2,1);
+S:=NewSubspace(CuspidalSubspace(M));
+new:=NewformDecomposition(S);
+CM:=FormsWithCM(new);
+
+> #new;
+98
+> #CM;
+30
+
+> CM;
+[ 1, 2, 3, 4, 9, 10, 11, 15, 17, 18, 24, 25, 26, 28, 36, 37, 39, 40, 41, 42, 43, 44, 45, 49, 50, 56, 58, 65, 78, 92 ]
+
+
+> for i in [1..#new] do
+for> if i notin CM then
+for|if> print(DiscardPlace(7,eps,Chi,new,i,1,20));
+for|if> end if;
+for> end for;
+{@ 2, 7 @}
+{@ 2, 7 @}
+{@ 2, 7 @}
+{@ 2, 7 @}
+{@ 2, 7 @}
+{@ 2, 7 @}
+{@ 2, 7 @}
+{@ 2, 7 @}
+{@ 2, 7 @}
+{@ 2, 7 @}
+{@ 2, 7 @}
+{@ 2, 7 @}
+{@ 5, 7 @}
+{@ 11, 2, 7, 17 @}
+{@ 5, 7 @}
+{@ 23, 2 @}
+{@ 2, 31 @}
+{@ 23, 2 @}
+{@ 2, 31 @}
+{@ 11, 2, 7 @}
+{@ 11, 2, 7 @}
+{@ 5, 7 @}
+{@ 2, 17, 7 @}
+{@ 2, 17, 7 @}
+{@ 11, 2, 7, 17 @}
+{@ 2, 31 @}
+{@ 5, 7 @}
+{@ 23, 2 @}
+{@ 23, 2 @}
+{@ 2, 31 @}
+{@ 11, 2, 7 @}
+{@ 11, 2, 7 @}
+{@ 11, 2, 3 @}
+{@ 11, 2, 3 @}
+{@ 7 @}
+{@ 17, 7 @}
+{@ 2, 3 @}
+{@ 2 @}
+{@ 2 @}
+{@ 2 @}
+{@ 7 @}
+{@ 17, 7 @}
+{@ 11, 2, 3 @}
+{@ 11, 2, 3 @}
+{@ 7 @}
+{@ 17, 7 @}
+{@ 2, 7 @}
+{@ 2, 7 @}
+{@ 2, 3 @}
+{@ 2 @}
+{@ 7 @}
+{@ 17, 7 @}
+{@ 7 @}
+{@ 3 @}
+{@ 7 @}
+{@ 3 @}
+{@ 7 @}
+{@ 3 @}
+{@ 7 @}
+{@ 3 @}
+{@ 5, 7 @}
+{@ 11, 2 @}
+{@ 5, 7 @}
+{@ 7 @}
+{@ 11, 2 @}
+{@ 7 @}
+{@ 2 @}
+{@ 2 @}
