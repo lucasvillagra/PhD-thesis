@@ -19,6 +19,10 @@ M:=ModularSymbols(eps,2,1);
 S:=NewSubspace(CuspidalSubspace(M));
 new:=NewformDecomposition(S);
 CM:=FormsWithCM(new);
+
+print "There are", #new, "forms,", #CM, "of them having complex multiplication.";
+print "Forms with CM:", CM;
+
 print("Forms with CM:");
 print(CM);
 
@@ -41,6 +45,10 @@ M:=ModularSymbols(eps,2,1);
 S:=NewSubspace(CuspidalSubspace(M));
 new:=NewformDecomposition(S);
 CM:=FormsWithCM(new);
+
+print "There are", #new, "forms,", #CM, "of them having complex multiplication.";
+print "Forms with CM:", CM;
+
 print("Forms with CM:");
 print(CM);
 
