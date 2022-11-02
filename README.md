@@ -4,12 +4,8 @@ This git repository contains files related to the computational part of the Ph.D
 
 # Contents:
 
-**• mazur.m, Mazur42p.m, Mazur26p.m** : To run Mazur's trick, in Magma.
+**• Equation (2,6,p) ** : This folder contains the files used for the equation of signature (2,6,p). There is another file there explaining each function.
 
-**• Minimal_model** :  This folder contains the files "Curves_d=n.sage" for n=5,7,11,15., with the minimal models of the curves that appear in the paper (in Sage).
+**• Equation (4,2,p) ** : This folder contains the files used for the equation of signature (4,2,p). There is another file there explaining each function.
 
-**• Minimal_model** :  This folder contains the files "Multi-Frey.m" and "Codesd4.m", needed to run the file "Cased4.m", in Magma.
-
-**• Cased4.m** : The code used in Theorem A.8, in Magma.
-
-**• Outputs.txt** :  A file that shows the outputs of "Casedn.m/gp", for n=5,7,11,13,15,19. 
+**• README.md ** : This file.
