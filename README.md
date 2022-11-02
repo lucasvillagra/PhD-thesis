@@ -4,8 +4,8 @@ This git repository contains files related to the computational part of the Ph.D
 
 # Contents:
 
-**• Equation (2,6,p) ** : This folder contains the files used for the equation of signature (2,6,p). There is another file there explaining each function.
+**• Equation (2,6,p)** : This folder contains the files used for the equation of signature (2,6,p). There is another file there explaining each function.
 
-**• Equation (4,2,p) ** : This folder contains the files used for the equation of signature (4,2,p). There is another file there explaining each function.
+**• Equation (4,2,p)** : This folder contains the files used for the equation of signature (4,2,p). There is another file there explaining each function.
 
-**• README.md ** : This file.
+**• README.md** : This file.
