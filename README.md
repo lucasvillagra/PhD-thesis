@@ -1,6 +1,6 @@
 # Code for the Ph.D. thesis: Q-curves and Hecke characters in the modular method.
 
-This git repository contains files related to the computational part of the Ph.D. thesis: Q-curves and Hecke characters in the modular method. It contains the codes used to run "Mazur's trick", ir order to discard the newforms, and also the code to compute Ellenberg's bounds. It also includes the codes to compute some of the tables that appear in the thesis. You can find the outputs each folder.
+This git repository contains files related to the computational part of the Ph.D. thesis: Q-curves and Hecke characters in the modular method. It contains the codes used to run "Mazur's trick", ir order to discard the newforms, and also the code to compute Ellenberg's bounds. It also includes the codes to compute some of the tables that appear in the thesis. You can find the outputs in each folder.
 
 # Contents:
 
